@@ -1,7 +1,5 @@
 const { expect } = require("@wdio/globals");
-const { default: homePage } = require("../pageobjects/home.page");
-HomePage = require("../pageobjects/home.page");
-
+const formFields = require('../pageobjects/form.fields.page.js');
 describe("Form fields tests", () => {
   const inputValues = [
     "Hello World", // String
@@ -14,13 +12,9 @@ describe("Form fields tests", () => {
   inputValues.forEach((input) => {
     it(`should be able to type "${input}" in the input and validate the text and default value @regression`, async () => {
       // Check if the home screen is displayed (you can check for a unique element)
-      await $("~Home").waitForDisplayed({
-        timeout: 20000,
-      });
-      await $("~Forms").click();
-      await $("~text-input").setValue(input);
-      const expectedText = input === '' ? 'Type something' : input;
-      expect(await $("~text-input").getText()).toBe(expectedText);
+      await formFields.openForms();
+      await formFields.setInputValue(input);
+      await formFields.validateInputValue(input);
     });
   });
 
