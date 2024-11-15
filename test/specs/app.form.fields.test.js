@@ -1,6 +1,9 @@
 const { expect } = require("@wdio/globals");
-const formFields = require('../pageobjects/form.fields.page.js');
+const formFields = require("../pageobjects/form.fields.page.js");
 describe("Form fields tests", () => {
+  before(async () => {
+    await formFields.openForms();
+  });
   const inputValues = [
     "Hello World", // String
     "12345", // Numeric string
@@ -11,18 +14,17 @@ describe("Form fields tests", () => {
 
   inputValues.forEach((input) => {
     it(`should be able to type "${input}" in the input and validate the text and default value @regression`, async () => {
-      // Check if the home screen is displayed (you can check for a unique element)
-      await formFields.openForms();
       await formFields.setInputValue(input);
       await formFields.validateInputValue(input);
     });
   });
 
   it("should be able turn on and off the switch @regression", async () => {
-    // check the default value of the switch
-    expect(await $("~switch").getText()).toBe("OFF");
-    await $("~switch").click();
-    // check the value of the switch after clicking
-    expect(await $("~switch").getText()).toBe("ON");
+    // Check the default value of the switch
+    await formFields.validateSwitchValue("OFF");
+    // Toggle the switch
+    await formFields.toggleSwitch();
+    // Check the value of the switch after clicking
+    await formFields.validateSwitchValue("ON");
   });
 });

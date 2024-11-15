@@ -32,6 +32,11 @@ class FormFieldsPage {
         const actualText = await this.getInputValue();
         expect(actualText).toBe(expectedText);
     }
+
+    async validateSwitchValue(expectedValue) {
+        const actualValue = await this.getSwitchValue();
+        expect(actualValue).toBe(expectedValue);
+    }
 }
 
 module.exports = new FormFieldsPage();
