@@ -19,3 +19,4 @@ chromeDriver
 *.mp4
 allure-results/
 allure-report/
+node_modules
