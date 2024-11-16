@@ -1,0 +1,9 @@
+{
+    "inputValues": [
+        "Hello World", 
+        "12345", 
+        "Special!@#$", 
+        " ", 
+        ""
+    ]
+}

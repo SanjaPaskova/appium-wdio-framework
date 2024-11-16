@@ -20,3 +20,4 @@ chromeDriver
 allure-results/
 allure-report/
 node_modules
+test-results/.last-run.json

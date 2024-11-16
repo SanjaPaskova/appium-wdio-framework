@@ -3,6 +3,11 @@
 This project contains automated tests for a mobile application using appium. The tests cover various functionalities such as form fields, drag and drop actions.
 
 ## Project Structure
+.
+├── data
+
+│   ├── formFields.json
+
 ├── pageobjects
 
 │   ├── dragAndDrop.page.js
@@ -27,6 +32,7 @@ This project contains automated tests for a mobile application using appium. The
 
 └── README.md
 
+- **data/**: Contains JSON files with test data.
 - **pageobjects/**: Contains the Page Object Model (POM) files that encapsulate the elements and actions for different screens of the app.
 - **tests/**: Contains the test files that use the page objects to perform various test scenarios.
 - **wdio.conf.js**: Configuration file for WebdriverIO.
@@ -135,6 +141,49 @@ exports.config = {
 To run a specific suite, use the following command:
 
 npx wdio wdio.conf.js --suite formFields
+
+## Data-Driven Testing
+This project uses data-driven testing to validate different input values. The test data is stored in JSON files located in the data folder.
+
+Example JSON File
+
+// FILE: [formFields.json]
+```javascript
+{
+    "inputValues": [
+        "Hello World", 
+        "12345", 
+        "Special!@#$", 
+        " ", 
+        ""
+    ]
+}
+```
+
+Reading Data from JSON File
+The test file reads the input values from the JSON file and uses them in the test cases.
+```javascript
+const formFields = require("../pageobjects/form.fields.page.js");
+const fs = require("fs");
+const path = require("path");
+
+// Read input values from JSON file
+const inputValuesPath = path.join(__dirname, "../data/formFields.json");
+const inputValues = JSON.parse(fs.readFileSync(inputValuesPath, "utf8")).inputValues;
+
+describe("Form fields tests", () => {
+  before(async () => {
+    await formFields.openForms();
+  });
+
+  inputValues.forEach((input) => {
+    it(`should be able to type "${input}" in the input and validate the inserted value`, async () => {
+      await formFields.setInputValue(input);
+      await formFields.validateInputValue(input);
+    });
+  });
+});
+```
 
 ## Test Scenarios
 

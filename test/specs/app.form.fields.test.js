@@ -1,18 +1,18 @@
-const { expect } = require("@wdio/globals");
 const formFields = require("../pageobjects/form.fields.page.js");
+const fs = require("fs");
+const path = require("path");
+// Read input values from JSON file
+const inputValuesPath = path.join(__dirname, "../../data/formFields.json");
+const inputValuesTxt = JSON.parse(
+  fs.readFileSync(inputValuesPath, "utf8")
+).inputValues;
+
 describe("Form fields tests", () => {
   before(async () => {
     await formFields.openForms();
   });
-  const inputValues = [
-    "Hello World", // String
-    "12345", // Numeric string
-    "Special!@#$", // Special characters
-    " ", // Space
-    "", // Empty string
-  ];
 
-  inputValues.forEach((input) => {
+  inputValuesTxt.forEach((input) => {
     it(`should be able to type "${input}" in the input and validate the inserted value`, async () => {
       await formFields.setInputValue(input);
       await formFields.validateInputValue(input);
