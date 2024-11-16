@@ -113,6 +113,29 @@ To run the tests, use the following command:
 
 npx wdio wdio.conf.js
 
+## Test Suites
+
+You can define test suites in the `wdio.conf.js` file to group related tests and run them together. Here is an example of how to define test suites:
+
+```javascript
+// [wdio.conf.js](http://_vscodecontentref_/0)
+exports.config = {
+    // ...
+    suites: {
+        formFields: [
+            './tests/app.form.fields.test.js'
+        ],
+        dragAndDrop: [
+            './tests/app.drag.and.drop.test.js'
+        ]
+    },
+    // ...
+};
+```
+To run a specific suite, use the following command:
+
+npx wdio wdio.conf.js --suite formFields
+
 ## Test Scenarios
 
 ### Form Fields Tests

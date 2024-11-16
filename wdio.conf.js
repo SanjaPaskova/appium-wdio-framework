@@ -30,6 +30,23 @@ exports.config = {
     exclude: [
         // 'path/to/excluded/files'
     ],
+    suites: {
+        dragAndDrop: [
+            './test/specs/app.drag.and.drop.test.js',
+           // './test/specs/app.drag.and.drop.test.spec.js'
+        ],
+        forms: [
+            './test/specs/app.form.fields.test.js',
+            // './test/specs/app.form.fields.test.spec.js'
+        ],
+        smoke: [
+            './test/specs/app.form.fields.test.js',
+            './test/specs/app.drag.and.drop.test.js'    
+        ],
+        regression: [
+            './test/specs/app.swipe.test.js',
+        ]
+    },
     //
     // ============
     // Capabilities
