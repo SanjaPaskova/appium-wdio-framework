@@ -48,7 +48,7 @@ class DragAndDropPage {
   }
 
   async openDragAndDrop() {
-    await this.homeButton.waitForDisplayed({ timeout: 20000 });
+    await this.homeButton.waitForDisplayed();
     await this.dragButton.click();
     return this;
   }

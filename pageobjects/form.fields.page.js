@@ -7,7 +7,7 @@ class FormFieldsPage {
     get switchElement() { return $('~switch'); }
 
     async openForms() {
-        await this.homeButton.waitForDisplayed({ timeout: 20000 });
+        await this.homeButton.waitForDisplayed();
         await this.formsButton.click();
     }
 

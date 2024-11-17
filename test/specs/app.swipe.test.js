@@ -3,12 +3,11 @@ import { expect } from '@wdio/globals';
 describe('App swipe tests', () => {
     it('should be able to swipe horizontal by swiping the carousel from left to right @regression', async () => {
         // Check if the home screen is displayed (you can check for a unique element)
-        await $('~Home').waitForDisplayed({
-            timeout: 20000
-        });
+        await $('~Home').waitForDisplayed();
         await $('~Swipe').click();
 
         // Determine the rectangles of the carousel
+        await $('~Carousel').waitForDisplayed();
         const carouselElement = await $('~Carousel');
         const carouselRectangles = await driver.getElementRect(carouselElement.elementId);
 
