@@ -1,4 +1,4 @@
-const formFields = require("../pageobjects/form.fields.page.js");
+const formFields = require("../../pageobjects/form.fields.page.js");
 const fs = require("fs");
 const path = require("path");
 // Read input values from JSON file
