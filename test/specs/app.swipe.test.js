@@ -16,6 +16,10 @@ describe('App swipe tests', () => {
         const fromX = Math.round(carouselRectangles.x + carouselRectangles.width * 0.9);
         const toX = Math.round(carouselRectangles.x + carouselRectangles.width * 0.1);
 
+        const elem0 = await $('//android.view.ViewGroup[@resource-id="__CAROUSEL_ITEM_0_READY__"]');
+        const cardRectangles0 = await driver.getElementRect(elem0.elementId);
+        expect(cardRectangles0.x === 0).toBeTruthy();
+
         // Execute the swipe gesture by providing a starting position and an end position
         await driver.performActions([
             {
@@ -34,7 +38,12 @@ describe('App swipe tests', () => {
             }
         ]);
 
-        // Validate that the carousel item is displayed
-        expect(await $('//android.view.ViewGroup[@resource-id="__CAROUSEL_ITEM_0_READY__"]')).toBeDisplayed();
+        const elem = await $('//android.view.ViewGroup[@resource-id="__CAROUSEL_ITEM_1_READY__"]');
+        const cardRectangles = await driver.getElementRect(elem.elementId);
+        expect(cardRectangles.x === 0).toBeTruthy();
+        // Fix the assertion to check if the element does not exist
+        const doesElem0Exist = await elem0.isExisting();
+        expect(doesElem0Exist).toBeFalsy();         
+
     });
 });
