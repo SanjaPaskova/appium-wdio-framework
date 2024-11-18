@@ -85,6 +85,24 @@ https://github.com/webdriverio/native-demo-app/releases/download/v1.0.8/android.
 
 and place it in apps folder.
 
+6. Install uiautomator2 driver: 
+
+appium driver install uiautomator2
+
+7. Ensure appium.automationName is defined in config.capabilities
+
+```javascript
+exports.config = {
+    // ...
+    capabilities: [{
+        platformName: 'Android',
+        'appium:automationName': 'UiAutomator2',
+        // other capabilities
+    }],
+    // ...
+};
+```
+
 ## Running Tests
 
 To run the tests, use the following command:
@@ -113,7 +131,7 @@ Example test that swipes left and validates position after swiping
 ## Running Tests
 
 To run the tests, use the following command:
-
+```javascript
 npx wdio wdio.conf.js
 
 ## Test Suites
