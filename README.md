@@ -4,6 +4,10 @@ This project contains automated tests for a mobile application using appium. The
 
 ## Project Structure
 .
+├── apps
+
+│   ├── your-app.apk
+
 ├── data
 
 │   ├── formFields.json
@@ -34,6 +38,7 @@ This project contains automated tests for a mobile application using appium. The
 
 └── README.md
 
+- **apps/**: Contains the `.apk` files for the mobile application.
 - **data/**: Contains JSON files with test data.
 - **pageobjects/**: Contains the Page Object Model (POM) files that encapsulate the elements and actions for different screens of the app.
 - **tests/**: Contains the test files that use the page objects to perform various test scenarios.
@@ -52,6 +57,7 @@ This project contains automated tests for a mobile application using appium. The
 1. Clone the repository:
 
 git clone git@github.com:SanjaPaskova/appium-wdio-framework.git
+
 cd appium-wdio-framework
 
 2. Install the dependencies:
@@ -68,6 +74,16 @@ appium (start Appium server)
 
 - Install Android Studio and set up the Android SDK.
 - Add the Android SDK tools to your PATH.
+
+5. Create an `apps` folder and place your `.apk` files within it:
+
+mkdir apps
+
+Download the demo app `.apk` file using this link:
+
+https://github.com/webdriverio/native-demo-app/releases/download/v1.0.8/android.wdio.native.app.v1.0.8.apk 
+
+and place it in apps folder.
 
 ## Running Tests
 
