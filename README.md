@@ -1,6 +1,6 @@
 # Mobile App Automation Tests
 
-This project contains automated tests for a mobile application using appium. The tests cover various functionalities such as form fields, drag and drop actions.
+This project contains automated tests for a mobile application using appium. The tests cover various functionalities such as form fields, drag and drop actions and swipe.
 
 ## Project Structure
 
