@@ -79,10 +79,13 @@ npx wdio wdio.conf.js
 
 Tests the ability to type different types of data into input fields and validate the text.
 
-### Drag and Drop Tests
+### Drag and Drop Test
 
-Tests the drag and drop functionality to complete a picture.
+Tests with drag and drop functionality.
 
+### Swipe Test
+
+Example test that swipes left and validates position after swiping
 
 
 - **pageobjects/**: Contains the Page Object Model (POM) files that encapsulate the elements and actions for different screens of the app.
