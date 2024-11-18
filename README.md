@@ -51,8 +51,8 @@ This project contains automated tests for a mobile application using appium. The
 
 1. Clone the repository:
 
-git clone https://github.com/yourusername/mobile-app-automation-tests.git
-cd mobile-app-automation-tests
+git clone git@github.com:SanjaPaskova/appium-wdio-framework.git
+cd appium-wdio-framework
 
 2. Install the dependencies:
 
@@ -92,33 +92,6 @@ Example test that swipes left and validates position after swiping
 - **tests/**: Contains the test files that use the page objects to perform various test scenarios.
 - **wdio.conf.js**: Configuration file for WebdriverIO.
 
-## Prerequisites
-
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-- Appium (v1.20 or higher)
-- Android SDK
-
-## Installation
-
-1. Clone the repository:
-
-git clone https://github.com/yourusername/mobile-app-automation-tests.git
-cd mobile-app-automation-tests
-
-2. Install the dependencies:
-
-npm install
-
-3. Ensure Appium is installed and running:
-
-npm install -g appium
-
-4. Set up the Android environment:
-
-- Install Android Studio and set up the Android SDK.
-- Add the Android SDK tools to your PATH.
-
 ## Running Tests
 
 To run the tests, use the following command:
@@ -130,7 +103,6 @@ npx wdio wdio.conf.js
 You can define test suites in the `wdio.conf.js` file to group related tests and run them together. Here is an example of how to define test suites:
 
 ```javascript
-// [wdio.conf.js](http://_vscodecontentref_/0)
 exports.config = {
     // ...
     suites: {
