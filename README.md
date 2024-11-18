@@ -60,7 +60,9 @@ npm install
 
 3. Ensure Appium is installed and running:
 
-npm install -g appium
+npm install -g appium (install Appium globally)
+
+appium (start Appium server)
 
 4. Set up the Android environment:
 
@@ -71,7 +73,7 @@ npm install -g appium
 
 To run the tests, use the following command:
 
-npx wdio wdio.conf.js
+npm run test
 
 ## Test Scenarios
 
