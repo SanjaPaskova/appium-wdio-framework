@@ -286,6 +286,8 @@ npx allure open
 
 The Allure report will open in your default web browser, providing a detailed view of the test results.
 
+## Limitations
+This solution is designed to work only on Android and not on iOS. The swipe gestures and element interactions are implemented using Android-specific selectors and actions. If you need to run these tests on iOS, you will need to modify the selectors and possibly the actions to be compatible with iOS.
 
 ## Contributing
 
