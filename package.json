@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio wdio.conf.js",
-    "test:smoke": "npx wdio wdio.conf.js --suite smoke",
-    "test:regression": "npx wdio wdio.conf.js --suite regression",
+    "test:android": "npx wdio wdio.android.conf.js",
+    "test:android:smoke": "npx wdio wdio.android.conf.js --suite smoke",
+    "test:android:regression": "npx wdio wdio.android.conf.js --suite regression",
+    "test:ios": "npx wdio wdio.ios.conf.js",
+    "test:ios:smoke": "npx wdio wdio.ios.conf.js --suite smoke",
+    "test:ios:regression": "npx wdio wdio.ios.conf.js --suite regression",
     "allure:report": "allure generate allure-results --clean -o allure-report",
     "allure:open": "allure open"
   },
@@ -14,6 +17,7 @@
   "description": "",
   "dependencies": {
     "@wdio/cli": "^9.2.12",
+    "appium": "^2.13.1",
     "appium-inspector": "^2023.2.1",
     "i": "^0.3.7"
   },
@@ -24,6 +28,7 @@
     "allure": "^0.0.0",
     "allure-commandline": "^2.32.0",
     "appium-uiautomator2-driver": "^2.2.0",
+    "appium-xcuitest-driver": "^7.35.0",
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
     "winston": "^3.17.0"

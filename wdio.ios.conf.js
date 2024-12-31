@@ -33,7 +33,7 @@ exports.config = {
     suites: {
         dragAndDrop: [
             './test/specs/app.drag.and.drop.test.js',
-           // './test/specs/app.drag.and.drop.test.spec.js'
+            // './test/specs/app.drag.and.drop.test.spec.js'
         ],
         forms: [
             './test/specs/app.form.fields.test.js',
@@ -41,7 +41,7 @@ exports.config = {
         ],
         smoke: [
             './test/specs/app.form.fields.test.js',
-            './test/specs/app.drag.and.drop.test.js'    
+            './test/specs/app.drag.and.drop.test.js'
         ],
         regression: [
             './test/specs/app.swipe.test.js',
@@ -68,39 +68,36 @@ exports.config = {
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
-    //
-    // capabilities: [{
-    //     // capabilities for local Appium web tests on an Android Emulator
-    //     platformName: 'Android',
-    //     'appium:deviceName': 'Pixel 2',
-    //     'appium:app': join(process.cwd(), './ApiDemos-debug.apk'),
-    //     'appium:automationName': 'UiAutomator2'
-    // }],
+    
     capabilities: [
         {
             // The defaults you need to have in your config
-            platformName: "Android",
+            platformName: "iOS",
             "wdio:maxInstances": 1,
             // For W3C the appium capabilities need to have an extension prefix
             // This is `appium:` for all Appium Capabilities which can be found here
+            // http://appium.io/docs/en/writing-running-appium/caps/
 
             //
-            // NOTE: Change this name according to the Emulator you have created on your local machine
-            "appium:deviceName": "Pixel 2",
+            // NOTE: Change this name according to the Simulator you have created on your local machine
+            "appium:deviceName": "iPhone 15 Pro Max",
             //
-            // NOTE: Change this version according to the Emulator you have created on your local machine
-            "appium:platformVersion": "10.0",
+            // NOTE: Change this version according to the Simulator Version you have created on your local machine
+            "appium:platformVersion": "18.2",
             "appium:orientation": "PORTRAIT",
-            "appium:automationName": "UiAutomator2",
+            "appium:automationName": "XCUITest",
             // The path to the app
             "appium:app": join(
                 process.cwd(),
                 "apps",
-                //
-                // NOTE: Change this name according to the app version you downloaded
-                "android.wdio.native.app.v1.0.8.apk"
+                // Change this name according to the app version you downloaded
+                "ios.simulator.wdio.native.app.v1.0.8.zip"
             ),
             "appium:newCommandTimeout": 240,
+            // This is needed to wait for the webview context to become available
+            "appium:webviewConnectTimeout": 5000,
+            "appium:showXcodeLog": true,
+            "appium:wdaLocalPort": 8100,
         },
     ],
 
@@ -181,6 +178,20 @@ exports.config = {
         disableWebdriverStepsReporting: true,
         disableWebdriverScreenshotsReporting: false,
     }]],
+
+    afterTest: function (test, context, { error, result, duration, passed }) {
+        if (!passed) {
+            const screenshotPath = join(__dirname, './allure-results', `${test.title}.png`);
+            browser.saveScreenshot(screenshotPath);
+            console.log(`Screenshot saved to: ${screenshotPath}`);
+            process.emit('allure:addAttachment', {
+                name: 'Screenshot',
+                type: 'image/png',
+                content: screenshotPath,
+            });
+           
+        }
+    },
 
     onComplete: function () {
         const reportError = new Error('Could not generate Allure report')
