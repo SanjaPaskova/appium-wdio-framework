@@ -6,12 +6,13 @@ class LoginPage {
     get inputEmail() { return $('~input-email'); }
     get inputPassword() { return $('~input-password'); }
     get buttonLogin() { return $('~button-LOGIN'); }
-    get youAreLoggedInText() { return $(this.locatorStrategy('You are logged in!'));}
+    get youAreLoggedInText() { return $(this.locatorStrategyById('You are logged in!', 'TextView', 'message')); }
+    get okButton() { return $(this.locatorStrategyById(`OK`, 'Button', 'button1')); }
 
-    locatorStrategy(selector) {
+    locatorStrategyById(selector, widgetType, android_id) {
         return driver.isIOS
             ? `~${selector}`
-            : `//android.widget.TextView[@resource-id="android:id/message"]`;
+            : `//android.widget.${widgetType}[@resource-id="android:id/${android_id}"]`;
     }
 
     async insertEmail(value) {
@@ -23,7 +24,7 @@ class LoginPage {
         await this.inputPassword.setValue(value);
     }
 
-    async clickLogin() { 
+    async clickLogin() {
         await this.buttonLogin.click();
     }
 
@@ -37,7 +38,7 @@ class LoginPage {
         return await this.inputEmail.getText();
     }
 
-    async getPasswordValue() {  
+    async getPasswordValue() {
         return await this.inputPassword.getText();
     }
 
@@ -46,8 +47,30 @@ class LoginPage {
         await this.loginPageButton.click();
     }
 
-    async validateLogin() {
-       expect (await this.youAreLoggedInText.getText()).toBe('You are logged in!');
+    async validateLogin(expectedResult) {
+        // Check if the youAreLoggedInText element is displayed
+        if (expectedResult) {
+            const text = await this.youAreLoggedInText.getText();
+            expect(text).toBe('You are logged in!', `Expected text to be 'You are logged in!', but got '${text}'`);
+            console.log('Login successful');
+            expect(true).toBe(expectedResult, `Expected login result to be ${expectedResult}, but got true`);
+            await this.clickOk();
+            return;
+        }
+
+        // Check if the error message is displayed
+        else {
+            console.log('Login unsuccessful');
+            expect(false).toBe(expectedResult, `Expected login result to be ${expectedResult}, but got false`);
+            const youAreLoggedInTextExists = await this.youAreLoggedInText.isExisting();
+            expect(youAreLoggedInTextExists).toBeFalsy('Expected youAreLoggedInText not to exist, but it does.');
+            return;
+        }
+    }
+
+    async clickOk() {
+        await this.okButton.waitForDisplayed();
+        await this.okButton.click();
     }
 }
 
