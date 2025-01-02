@@ -90,6 +90,26 @@ exports.config = {
             "appium:newCommandTimeout": 240,
             "appium:autoGrantPermissions": true
         },
+        {
+            // The defaults you need to have in your config
+            platformName: "Android",
+            "wdio:maxInstances": 1,
+            // For W3C the appium capabilities need to have an extension prefix
+            // This is `appium:` for all Appium Capabilities which can be found here
+
+            //
+            // NOTE: Change this name according to the Emulator you have created on your local machine
+            "appium:deviceName": "Samsung Galaxy S20",
+            //
+            // NOTE: Change this version according to the Emulator you have created on your local machine
+            "appium:platformVersion": "10.0",
+            "appium:orientation": "PORTRAIT",
+            "appium:automationName": "UiAutomator2",
+            // The path to the app
+            "appium:app": "bs://fded791e9dce0b2d2e36817df91941c606c01253"   ,
+            "appium:newCommandTimeout": 240,
+            "appium:autoGrantPermissions": true
+        }
     ],
 
     //
