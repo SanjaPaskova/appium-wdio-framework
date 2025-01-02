@@ -42,17 +42,17 @@ class SwipeScreenPage {
     async assertCarouselItemPosition(carouselItem) {
         const elem = await carouselItem;
         const cardRectangles = await driver.getElementRect(elem.elementId);
-        expect(cardRectangles.x === 0).toBeTruthy('Expected carousel item to be at position x = 0, but it is not.');
+        expect(cardRectangles.x === 0).toBeTruthy();
     }
 
     async assertCarouselItemDoesNotExist(carouselItem) {
         const doesExist = await carouselItem.isExisting();
-        expect(doesExist).toBeFalsy('Expected carousel item not to exist, but it does.');
+        expect(doesExist).toBeFalsy();
     }
 
     async assertCarouselItemIsDisplayed(carouselItem) {
         const cardRectangles = await driver.getElementRect((await carouselItem).elementId);
-        expect(cardRectangles.x === 0).toBeTruthy('Expected carousel item to be displayed, but it is not.');
+        expect(cardRectangles.x === 0).toBeTruthy();
     }
 }
 
